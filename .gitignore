@@ -1,2 +1,3 @@
+/*ignore these files, don't push node_modules to github*/
 node_modules
 .idea
