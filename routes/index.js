@@ -27,7 +27,7 @@ router.get('/fetch_picture', function (req, res, next) {
         });
 
     } else {
-        next();
+        next();//this sends it to the next 'handler', either designated or 404 handler
     }
 
 })

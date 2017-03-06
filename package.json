@@ -21,3 +21,7 @@
     "npm":"3.10.8"
   }
 }
+/*A lot of packages have one or more executable files that they'd like to install
+into the PATH. npm makes this pretty easy (in fact, it uses this feature to install the
+"npm" executable.) To use this, supply a bin field in your package.json which is
+//a map of command name to local file name. citations;package.json | npm Documentation*/
