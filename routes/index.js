@@ -6,7 +6,7 @@ var apod = require('../helpers/apod');
 router.get('/', function (req, res, next) {
     res.render('index', {title: 'Astropix'});
 });
-
+/*get picture of the day, send error message if unavailable*/
 router.get('/fetch_picture', function (req, res, next) {
     if (req.query.today) {
         apod(function (data, error) {
@@ -17,7 +17,7 @@ router.get('/fetch_picture', function (req, res, next) {
         }, true);
 
     }
-
+    /*get random picture or return error message*/
     else if (req.query.random) {
         apod(function (data, error) {
             if (error) {
