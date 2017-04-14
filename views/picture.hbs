@@ -5,7 +5,7 @@
 {{#if apod.is_image }}
     <img src="{{ apod.url }}">
 {{else}}
-    <p>Today's picture
+    <p>Today's image
     <a href="{{ apod.url }}">Please click here to view</a></p>
     {{/if}}
 
@@ -14,5 +14,16 @@
 <p>This is NASA's Astronomy pic of the day for {{ apod.date }}.</p>
 
 <p><a href="{{ apod.nasa_url }}">See this image at NASA website</a></p>
+
+<!--add a botton for favorites-->
+<div class="addToFavorites">
+    <form action="favorites/add" method="post">
+        <input type="hidden" name="date" value="{{apod.date}}">
+        <input type="hidden" name="title" value="{{apod.title}}">
+        <input type="hidden" name="url" value="{{apod.url}}">
+        <input type="hidden" name="nasa_url" value="{{apod.nasa_url}}">
+        <input type="submit" class="btn btn-success" name="add" value="Add to Favorites">
+    </form>
+</div>
 
 {{> navigation}}
