@@ -4,8 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+
 // add this to require the templating sturcture
 var hbs = require('express-handlebars');
+
+// added - set up Session. REquire and use new routes/favorites
+var session = require('express-session');
+var MongoDBStore = require('connect-mongodb-session')(session);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -17,6 +23,7 @@ var app = express();
 app.engine('.hbs', hbs({
     extname:'.hbs',
     defaultLayout: 'layout',
+    //path to partials directory
     partialsDir: path.join(__dirname, 'views/partials')
 }));
 
@@ -32,8 +39,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//configure session, and session storage in MongoDB
+var mongp_pw = process.env.MONGO_PW;
+var url = 'mongodb://admin:' + mongp_pw + '@localhost;27017//helloSession?authSource=admin';
+
+//added all this
+var store = new MongoDBStore({
+    uri: url,
+    collection: 'sessions'
+}, function (error) {
+    //todo deal with error connection
+    if(error)
+    console.log(error)
+
+});
+
+app.use(session({
+    secret: "put a random string here",
+    resave: false,
+    saveUninitialized: false,
+    store: store
+}));
+
 app.use('/', index);
-app.use('/users', users);
+app.use('/favorites', favorites);//changed from "users' to "favorites"
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
