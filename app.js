@@ -14,7 +14,8 @@ var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+// var users = require('./routes/users');
+var favorites = require('./routes/favorites');
 
 var app = express();
 
@@ -40,18 +41,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //configure session, and session storage in MongoDB
-var mongp_pw = process.env.MONGO_PW;
-var url = 'mongodb://admin:' + mongp_pw + '@localhost;27017//helloSession?authSource=admin';
+var mongo_pw = process.env.MONGO_PW;
+var url = 'mongodb://localhost:27017/helloSession';
 
 //added all this
 var store = new MongoDBStore({
-    uri: url,
-    collection: 'sessions'
-}, function (error) {
-    //todo deal with error connection
-    if(error)
-    console.log(error)
-
+    uri : url,
+    collection : 'sessions'
+}, function(error) {
+    //to do deal with error connection
+    if (error) console.log(error)
 });
 
 app.use(session({
