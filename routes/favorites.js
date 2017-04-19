@@ -16,7 +16,7 @@ router.post('/add', function(req, res, next){
         req.session.favorites = []; //create empty array
     }
     //Check if image is laready in the array
-    for (var x = 0 ; x ,req.session.favorites.length ; x++) {
+    for (var x = 0 ; x < req.session.favorites.length ; x++) {
         if (req.session.favorites[x].date ==req.body.date) {
             console.log('This is already a Favorite');
             return res.redirect('back'); //BAck to previous page

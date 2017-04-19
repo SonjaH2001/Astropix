@@ -4,10 +4,22 @@
     <div class="favitem">
         <a href="{{this.nasa_url}}">
             <img class="faveimage" src="{{this.url}}">
-        </a>
+        </a><br>
         <p class="favtitle">{{this.title}}</p>
         <p class="favdate">{{this.date}}</p>
     </div>
+
+<!--//remove from favorites-->
+    <div class="removeFromFavorites">
+        <form action="favorites/remove" method="post">
+            <input type="hidden" name="date" value="{{apod.date}}">
+            <input type="hidden" name="title" value="{{apod.title}}">
+            <input type="hidden" name="url" value="{{apod.url}}">
+            <input type="hidden" name="nasa_url" value="{{apod.nasa_url}}">
+            <input type="submit" class="btn btn-success" name="add" value="Remove From Favorites">
+        </form>
+    </div>
+    <br><br><br><br>
 {{else}}
     <p>No Favorites saved yet.</p>
 {{/each}}
