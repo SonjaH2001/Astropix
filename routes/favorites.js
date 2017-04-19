@@ -15,7 +15,7 @@ router.post('/add', function(req, res, next){
     if (!req.session.favorites){
         req.session.favorites = []; //create empty array
     }
-    //Check if image is laready in the array
+    //Check if image is already in the array
     for (var x = 0 ; x < req.session.favorites.length ; x++) {
         if (req.session.favorites[x].date ==req.body.date) {
             console.log('This is already a Favorite');
@@ -25,6 +25,11 @@ router.post('/add', function(req, res, next){
     //if not, add to array and redirect to favorites page
     req.session.favorites.push(req.body);
     res.redirect('/favorites');
-});//end of callback
+});//end of ADD callback
 
+//POST delete favorite
+router.post('/delete', function(req, res, next){
+    req.session.favorites.pop(req.body);
+    res.redirect('/favorites');
+}); //end of DELETE callback
 module.exports = router;
