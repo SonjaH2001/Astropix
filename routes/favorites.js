@@ -28,7 +28,13 @@ router.post('/add', function(req, res, next){
 });//end of ADD callback
 
 //POST delete favorite
-router.post('/delete', function(req, res, next){
+router.post('/remove', function(req, res, next){
+    //get the date attribure from the post request
+    var pictureDate = req.body.date
+    //"filter" will loop through the existing array and look for object with date attribute
+    //r.se..rfav = r.s.f.filter
+    //look for examples of filter. try with a sinmple int array and then adapt for this.
+    //return favorite
     req.session.favorites.pop(req.body);
     res.redirect('/favorites');
 }); //end of DELETE callback

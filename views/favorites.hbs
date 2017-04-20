@@ -11,11 +11,13 @@
 
 <!--//remove from favorites-->
     <div class="removeFromFavorites">
-        <form action="favorites/remove" method="post">
-            <input type="hidden" name="date" value="{{apod.date}}">
-            <input type="hidden" name="title" value="{{apod.title}}">
-            <input type="hidden" name="url" value="{{apod.url}}">
-            <input type="hidden" name="nasa_url" value="{{apod.nasa_url}}">
+        <!--put a slash before favorites to make the url path absolute-->
+        <form action="/favorites/remove" method="post">
+            <!--//only need this unique value to 'remove' object-->
+            <input type="hidden" name="date" value="{{this.date}}">
+            <!--<input type="hidden" name="title" value="{{apod.title}}">-->
+            <!--<input type="hidden" name="url" value="{{apod.url}}">-->
+            <!--<input type="hidden" name="nasa_url" value="{{apod.nasa_url}}">-->
             <input type="submit" class="btn btn-success" name="add" value="Remove From Favorites">
         </form>
     </div>
