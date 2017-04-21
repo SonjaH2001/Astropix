@@ -35,7 +35,12 @@ router.post('/remove', function(req, res, next){
     //r.se..rfav = r.s.f.filter
     //look for examples of filter. try with a sinmple int array and then adapt for this.
     //return favorite
-    req.session.favorites.pop(req.body);
+    for (var x = 0 ; x < req.session.favorites.length ; x++) {
+        if (req.session.favorites[x].date == req.body.date) {
+            req.session.favorites.splice(x,1);
+            break;
+        }
+    }
     res.redirect('/favorites');
 }); //end of DELETE callback
 module.exports = router;
