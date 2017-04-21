@@ -42,7 +42,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //configure session, and session storage in MongoDB
 var mongo_pw = process.env.MONGO_PW;
-var url = 'mongodb://localhost:27017/helloSession';
+// var url = 'mongodb://localhost:27017/helloSession';
+//env variable for this computer, for Heroku
+var url = process.env.DB_URL;
 
 //added all this
 var store = new MongoDBStore({
